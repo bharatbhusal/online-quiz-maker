@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const uuid = require('uuid');
+
 const UserModel = require('../models/UserModel');
 const env = require("../utils/validateEnv")
 const config = env.JWT_SECRECT_KEY
@@ -15,7 +17,7 @@ const registerUser = async (req, res) => {
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         console.log(hashedPassword)
-        const newUser = await UserModel.create({ username, email, password: hashedPassword });
+        const newUser = await UserModel.create({ userId: uuid.v4(), username, email, password: hashedPassword });
         console.log(req.body)
         console.log(newUser)
         res.status(201).json(newUser);
