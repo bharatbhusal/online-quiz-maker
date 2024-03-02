@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Question from './Question';
 
 const QuizAttempt = ({ category }) => {
+    const proxy = process.env.REACT_APP_DATABASE_URL
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState('');
@@ -16,7 +17,7 @@ const QuizAttempt = ({ category }) => {
     const fetchQuestionsByCategory = async () => {
         try
         {
-            const response = await fetch(`http://localhost:8081/questions/category/${category}`);
+            const response = await fetch(`${proxy}/questions/category/${category}`);
             const data = await response.json();
             setQuestions(data);
         } catch (error)
