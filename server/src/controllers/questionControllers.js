@@ -3,7 +3,6 @@ const createQuestion = async (req, res) => {
     try
     {
         const { question, category, creator, options } = req.body;
-        console.log(req.body)
         // Create the new question
         const newQuestion = await QuestionModel.create({ question, category, creator, options });
         res.status(201).json(newQuestion);
@@ -48,7 +47,6 @@ const getQuestionsByCategory = async (req, res) => {
     try
     {
         const category = req.params.category;
-        console.log(category)
         const questions = await QuestionModel.find({ category });
         res.status(200).json(questions);
     } catch (error)
