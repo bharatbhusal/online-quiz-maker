@@ -14,7 +14,10 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log(hashedPassword)
         const newUser = await UserModel.create({ username, email, password: hashedPassword });
+        console.log(req.body)
+        console.log(newUser)
         res.status(201).json(newUser);
     } catch (error)
     {
@@ -29,12 +32,12 @@ const loginUser = async (req, res) => {
         const user = await UserModel.findOne({ email });
         if (!user)
         {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(400).json({ message: `User doesn't exist` });
         }
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch)
         {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(400).json({ message: 'Incorrect Password' });
         }
         const payload = {
             user: {

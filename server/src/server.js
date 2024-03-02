@@ -5,6 +5,7 @@ const env = require("./utils/validateEnv")
 const connectDB = require("./config/dbConnection");
 const authRoutes = require("./routes/authRoutes"); // Import authRoutes
 const userRoutes = require("./routes/userRoutes");
+const questionRoutes = require("./routes/questionRoutes");
 const corsOptions = require("./config/corsOptions");
 
 // Initialize Express application
@@ -19,8 +20,8 @@ connectDB();
 app.use(express.json());
 
 // Routes
-app.use("/auth", authRoutes); // Use authRoutes for authentication endpoints
 app.use("/users", userRoutes);
+app.use("/questions", questionRoutes);
 
 // Define a basic route for testing
 app.get("/", (req, res) => {

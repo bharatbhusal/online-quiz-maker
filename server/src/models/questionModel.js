@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema({
-    text: {
+    question: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    creator: {
         type: String,
         required: true
     },
