@@ -41,7 +41,6 @@ const QuizAttempt = ({ category }) => {
 
         const currentQuestion = questions[currentQuestionIndex];
         const correctAnswer = currentQuestion.options.find(option => option.isCorrect)?.text;
-        console.log(currentQuestion)
         if (selectedOption === correctAnswer)
         {
             setScore(score + 1);
