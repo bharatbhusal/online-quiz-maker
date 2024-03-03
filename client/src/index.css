@@ -47,6 +47,10 @@ a {
 	flex-direction: column;
 }
 
+.align-center {
+	align-items: center;
+}
+
 body {
 	font-family: "Poppins", sans-serif;
 	background: var(--color-bg);
@@ -60,5 +64,4 @@ body {
 .container {
 	gap: 0.8rem;
 	height: 100vh;
-    
 }

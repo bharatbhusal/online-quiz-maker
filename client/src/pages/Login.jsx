@@ -3,6 +3,7 @@ import ErrorBox from '../components/ErrorBox'; // Import the ErrorBar component
 import SuccessBox from '../components/SuccessBox'; // Import the SuccessBar component
 import "../styles/login.css";
 import { useUserContext } from '../context/useUserContext';
+import { NavLink, Navigate, redirect } from 'react-router-dom';
 
 
 function Login() {
@@ -56,6 +57,7 @@ function Login() {
             const data = await response.json();
             setToken(data.accessToken);
             setSuccessMessages([...successMessages, 'Login successful']); // Add success message to array
+            
         } catch (error)
         {
             console.error('Error logging in:', error.message);

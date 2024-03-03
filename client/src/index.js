@@ -12,6 +12,7 @@ import NotFoundPage from "./pages/404NotFound"
 import { UserProvider } from "./context/UserContext"
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import CreateQuestion from "./pages/CreateQuestion";
 
 // Getting the DOM element with the id "root"
 const divContainer = document.getElementById("root")
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: '/create-questions',
-                        element: <Register />
+                        element: <CreateQuestion />
                     },
                     {
                         path: '/attemp-quiz',

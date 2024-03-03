@@ -1,0 +1,70 @@
+/* createQuestion.css */
+.create-question-container {
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+	margin-bottom: 20px;
+	font-size: 24px;
+}
+
+input[type="text"] {
+	display: block;
+	width: calc(100% - 20px);
+	padding: 10px;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.options {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 0.5rem;
+}
+.options input[type="radio"] {
+	transform: translateY(-8px);
+}
+
+/* createQuestion.css */
+
+/* Custom styling for radio buttons */
+input[type="radio"] {
+	appearance: none; /* Remove default radio button appearance */
+	-webkit-appearance: none; /* For older versions of webkit browsers */
+	width: 20px; /* Set width of radio button */
+	height: 20px; /* Set height of radio button */
+	border: 2px solid #007bff; /* Set border color */
+	border-radius: 25%; /* Make radio button round */
+}
+
+/* Custom styling for checked radio buttons */
+input[type="radio"]:checked {
+	background-color: #007bff; /* Change background color when radio button is checked */
+}
+
+button {
+	display: inline-block;
+	padding: 10px 20px;
+	margin-right: 10px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0056b3;
+}
+
+button:last-of-type {
+	margin-right: 0;
+}
