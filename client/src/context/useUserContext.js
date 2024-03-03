@@ -1,11 +1,11 @@
 import { useContext } from "react"
-import { QuestionContext } from "./QuestionsContext"
+import { UserContext } from "./UserContext"
 
-export const useQuestions = () => {
-    const context = useContext(QuestionContext)
+export const useUserContext = () => {
+    const context = useContext(UserContext)
     if (context === undefined)
     {
-        throw new Error("useQuestions must be used within a QuestionsContextProvider")
+        throw new Error("useUserContext must be used within a UserContextProvider")
     }
     return context
 }

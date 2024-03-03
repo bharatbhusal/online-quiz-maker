@@ -1,0 +1,29 @@
+/* errorBar.css */
+
+.error-box {
+	position: fixed;
+	top: 20px;
+	right: 30px;
+	height: 20rem;
+	width: 20rem;
+	z-index: 1000; /* Ensure it's above other content */
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.error-bar {
+	background-color: #ff8080; /* Light red background */
+	color: #fff; /* White text */
+	padding: 10px;
+	width: 100%;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	transition: opacity 0.5s ease-in-out, visibility 3s linear; /* Smooth transition for hiding */
+	opacity: 1; /* Start with full opacity */
+	visibility: visible; /* Start with visible */
+}
+
+.error-bar.hidden {
+	opacity: 0; /* Hide error bar when not visible */
+	visibility: hidden; /* Hide error bar element but keep space */
+}

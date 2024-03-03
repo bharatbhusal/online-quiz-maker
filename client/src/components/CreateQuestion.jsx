@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useUserContext } from '../context/useUserContext';
 
 function CreateQuestion() {
     const [question, setQuestion] = useState('');
@@ -6,7 +7,7 @@ function CreateQuestion() {
     const [options, setOptions] = useState(['']);
     const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
     const [creator, setCreator] = useState(''); // New state variable for creator
-
+    const { token } = useUserContext()
     const handleQuestionChange = (e) => setQuestion(e.target.value);
     const handleCategoryChange = (e) => setCategory(e.target.value);
     const handleOptionChange = (index, e) => {
@@ -35,12 +36,13 @@ function CreateQuestion() {
             const response = await fetch('http://localhost:8081/questions', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(payload)
             });
+
             const data = await response.json();
-            console.log(data); // Handle question creation success
         } catch (error)
         {
             console.error('Error creating question:', error);

@@ -5,6 +5,7 @@ import {
 
 // Importing the main App component from the "./App" file
 import App from "./App"
+import { UserProvider } from "./context/UserContext"
 
 // Getting the DOM element with the id "root"
 const divContainer = document.getElementById("root")
@@ -13,4 +14,8 @@ const divContainer = document.getElementById("root")
 const root = createRoot(divContainer)
 
 // Rendering the main App component within the root
-root.render(<App />)
+root.render(
+    <UserProvider>
+        <App />
+    </UserProvider>
+)
