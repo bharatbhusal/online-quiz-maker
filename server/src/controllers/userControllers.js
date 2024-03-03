@@ -4,7 +4,6 @@ const uuid = require('uuid');
 
 const UserModel = require('../models/UserModel');
 const env = require("../utils/validateEnv")
-const config = env.JWT_SECRECT_KEY
 
 const registerUser = async (req, res) => {
     try
@@ -16,7 +15,7 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await UserModel.create({ userId: uuid.v4(), username, email, password: hashedPassword });
+        const newUser = await UserModel.create({ username, email, password: hashedPassword });
         res.status(201).json(newUser);
     } catch (error)
     {
@@ -38,15 +37,7 @@ const loginUser = async (req, res) => {
         {
             return res.status(400).json({ message: 'Incorrect Password' });
         }
-        const payload = {
-            user: {
-                id: user.id
-            }
-        };
-        jwt.sign(payload, config, { expiresIn: 3600 }, (err, token) => {
-            if (err) throw err;
-            res.json({ token });
-        });
+        res.status(200).json({ message: "Login successful" })
     } catch (error)
     {
         res.status(500).json({ message: 'Error logging in user', error: error.message });
