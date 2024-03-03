@@ -3,10 +3,10 @@ const cors = require("cors");
 
 const env = require("./utils/validateEnv")
 const connectDB = require("./config/dbConnection");
-const authRoutes = require("./routes/authRoutes"); // Import authRoutes
 const userRoutes = require("./routes/userRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 const corsOptions = require("./config/corsOptions");
+const { authenticateToken } = require("./middlewares/auth");
 
 // Initialize Express application
 const app = express();
@@ -21,7 +21,7 @@ app.use(express.json());
 
 // Routes
 app.use("/users", userRoutes);
-app.use("/questions", questionRoutes);
+app.use("/questions", authenticateToken, questionRoutes);
 
 // Define a basic route for testing
 app.get("/", (req, res) => {

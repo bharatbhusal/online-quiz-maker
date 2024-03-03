@@ -37,7 +37,11 @@ const loginUser = async (req, res) => {
         {
             return res.status(400).json({ message: 'Incorrect Password' });
         }
-        res.status(200).json({ message: "Login successful" })
+        const payload = {
+            user: email
+        }
+        const accessToken = jwt.sign(payload, env.ACCESS_TOKEN_SECRECT)
+        res.status(200).json({ accessToken: accessToken })
     } catch (error)
     {
         res.status(500).json({ message: 'Error logging in user', error: error.message });
