@@ -3,15 +3,16 @@ import ErrorBox from '../components/ErrorBox'; // Import the ErrorBar component
 import SuccessBox from '../components/SuccessBox'; // Import the SuccessBar component
 import "../styles/login.css";
 import { useUserContext } from '../context/useUserContext';
-import { NavLink, Navigate, redirect } from 'react-router-dom';
+import { NavLink, Navigate, redirect, useNavigate } from 'react-router-dom';
 
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('bhusal@gmail.com');
+    const [password, setPassword] = useState('bhafds323fdrat');
     const [errorMessages, setErrorMessages] = useState([]); // State variable for error messages
     const [successMessages, setSuccessMessages] = useState([]); // State variable for success messages
     const { token, setToken } = useUserContext()
+    const navigator = useNavigate()
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
 
@@ -57,7 +58,8 @@ function Login() {
             const data = await response.json();
             setToken(data.accessToken);
             setSuccessMessages([...successMessages, 'Login successful']); // Add success message to array
-            
+            navigator('/category')
+
         } catch (error)
         {
             console.error('Error logging in:', error.message);

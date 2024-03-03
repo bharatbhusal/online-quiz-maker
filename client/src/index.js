@@ -13,6 +13,9 @@ import { UserProvider } from "./context/UserContext"
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CreateQuestion from "./pages/CreateQuestion";
+import QuizAttempt from "./pages/QuizAttempt";
+import CategorySelection from "./pages/CategorySelection";
+import { QuestionProvider } from "./context/QuestionsContext";
 
 // Getting the DOM element with the id "root"
 const divContainer = document.getElementById("root")
@@ -23,7 +26,7 @@ const root = createRoot(divContainer)
 
 const router = createBrowserRouter([
     {
-        path: "",
+        path: "/",
         element: <App />,
         errorElement: <NotFoundPage />,
 
@@ -48,9 +51,13 @@ const router = createBrowserRouter([
                         element: <CreateQuestion />
                     },
                     {
-                        path: '/attemp-quiz',
-                        element: <Register />
+                        path: '/category',
+                        element: <CategorySelection />,
                     },
+                    {
+                        path: '/quiz',
+                        element: <QuizAttempt />
+                    }
 
                 ]
             },
@@ -63,7 +70,9 @@ const router = createBrowserRouter([
 // Rendering the main App component within the root
 root.render(
     <UserProvider>
-        <RouterProvider router={router} />
+        <QuestionProvider>
+            <RouterProvider router={router} />
+        </QuestionProvider>
     </UserProvider>
 );
 

@@ -1,0 +1,50 @@
+/* quizAttempt.css */
+
+.quiz-container {
+	max-width: 600px; /* Limit the width of the container */
+	margin: 0 auto; /* Center the container horizontally */
+	padding: 20px;
+	background-color: #f9f9f9; /* Background color */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+	color: black;
+}
+
+.quiz-title {
+	font-size: 24px; /* Title font size */
+	font-weight: bold; /* Title font weight */
+	margin-bottom: 20px; /* Spacing below the title */
+}
+
+.question-number {
+	font-size: 18px; /* Font size for question number */
+	margin-bottom: 10px; /* Spacing below question number */
+}
+
+.question-text {
+	font-size: 20px; /* Font size for question text */
+	margin-bottom: 20px; /* Spacing below question text */
+}
+
+.options-container {
+	margin-bottom: 20px; /* Spacing below options container */
+}
+
+.option {
+	margin-bottom: 10px; /* Spacing between options */
+}
+
+.submit-button {
+	padding: 10px 20px; /* Padding for submit button */
+	font-size: 16px; /* Font size for submit button */
+	background-color: #007bff; /* Button background color */
+	color: #fff; /* Button text color */
+	border: none; /* Remove button border */
+	border-radius: 5px; /* Button border radius */
+	cursor: pointer; /* Cursor style */
+	transition: background-color 0.3s; /* Smooth transition for button color */
+}
+
+.submit-button:hover {
+	background-color: #0056b3; /* Button background color on hover */
+}
