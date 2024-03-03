@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ErrorBox from '../components/ErrorBox'; // Import the ErrorBar component
 import SuccessBox from '../components/SuccessBox'; // Import the SuccessBar component
 import "../styles/register.css";
@@ -13,6 +13,28 @@ function Register() {
     const handleUsernameChange = (e) => setUsername(e.target.value);
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
+
+
+    useEffect(() => {
+        // Remove the oldest error message from the array every 2 seconds
+        const interval = setInterval(() => {
+            setErrorMessages(errorMessages.slice(1));
+        }, 500);
+
+        // Cleanup function to clear the interval
+        return () => clearInterval(interval);
+    }, [errorMessages]); // Re-run effect whenever errorMessages change
+
+    useEffect(() => {
+        // Remove the oldest error message from the array every 2 seconds
+        const interval = setInterval(() => {
+            setSuccessMessages(successMessages.slice(1));
+        }, 500);
+
+        // Cleanup function to clear the interval
+        return () => clearInterval(interval);
+    }, [successMessages]); // Re-run effect whenever errorMessages change
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

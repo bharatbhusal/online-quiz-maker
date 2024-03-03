@@ -1,0 +1,28 @@
+/* =============== Error Styles Start =============== */
+.not-found-container {
+	height: 100vh;
+}
+
+.not-found-container .content {
+	text-align: center;
+}
+
+.heading {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	color: var(--color-primary);
+}
+
+.not-found-container .message {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	color: var(--color-white);
+}
+
+.not-found-container .link {
+	font-size: 1rem;
+	color: #00d9ff;
+	text-decoration: none;
+	font-weight: bold;
+}
+/* =============== Error Styles End =============== */
