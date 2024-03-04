@@ -23,6 +23,25 @@ const getAllQuestions = async (req, res) => {
         res.status(500).json({ message: 'Error fetching questions', error: error.message });
     }
 };
+const getCategories = async (req, res) => {
+    try
+    {
+        // Fetch all questions
+        const questions = await QuestionModel.find();
+
+        // Extract unique categories using Set
+        const uniqueCategoriesSet = new Set();
+        questions.forEach((each) => uniqueCategoriesSet.add(each.category));
+
+        // Convert Set to array
+        const uniqueCategories = Array.from(uniqueCategoriesSet);
+
+        res.status(200).json({ categories: uniqueCategories });
+    } catch (error)
+    {
+        res.status(500).json({ message: 'Error fetching categories', error: error.message });
+    }
+};
 
 
 // Get question by ID
@@ -74,5 +93,6 @@ module.exports = {
     getAllQuestions,
     getQuestionsByCategory,
     getQuestionsByCreator,
-    getQuestionById
+    getQuestionById,
+    getCategories
 };

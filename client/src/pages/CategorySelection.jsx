@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/quizAttempt.css";
+import "../styles/categorySelection.css";
 import { useUserContext } from '../context/useUserContext';
 import { NavLink } from 'react-router-dom';
 import { useQuestions } from '../context/useQuestionContext';
@@ -8,7 +8,8 @@ const CategorySelection = () => {
     const proxy = process.env.REACT_APP_DATABASE_URL;
     const { token } = useUserContext();
     const [categories, setCategories] = useState([]);
-    const { setCategory } = useQuestions()
+    const { setCategory } = useQuestions();
+
     useEffect(() => {
         token && fetchCategories();
     }, []);
@@ -32,11 +33,11 @@ const CategorySelection = () => {
     };
 
     return (
-        <div className="category-selection">
+        <div className="category-selection flex flex-column">
             <h2>Select a Category</h2>
-            <div>
+            <div className='category-buttons'>
                 {categories && categories.map((category, index) => (
-                    <NavLink key={index} to={`/quiz`} >
+                    <NavLink key={index} to={`/quiz`}>
                         <button onClick={() => setCategory(category)}>{category}</button>
                     </NavLink>
                 ))}

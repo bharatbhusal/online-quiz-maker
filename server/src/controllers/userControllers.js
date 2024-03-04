@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { v4 } = require('uuid');
 
 const UserModel = require('../models/UserModel');
 const env = require("../utils/validateEnv")
@@ -15,11 +14,12 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await UserModel.create({ userId: v4(), username, email, password: hashedPassword });
+        const newUser = await UserModel.create({ username, email, password: hashedPassword });
         res.status(201).json(newUser);
     } catch (error)
     {
         res.status(500).json({ message: 'Error registering user', error: error.message });
+        console.log(error.message)
     }
 };
 

@@ -10,6 +10,10 @@ router.get('/', questionController.getAllQuestions);
 // Get question by ID
 router.get('/id/:id', questionController.getQuestionById);
 
+
+// Get questions by category
+router.get('/categories', questionController.getCategories);
+
 // Get questions by category
 router.get('/category/:category', questionController.getQuestionsByCategory);
 
