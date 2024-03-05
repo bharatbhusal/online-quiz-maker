@@ -4,26 +4,23 @@ const createQuestion = async (req, res) => {
     {
         const { question, category, user, options } = req.body;
 
-        // Check if any of the required fields are null or empty
-        if (!question || question.trim() === '')
+        // Check for null or empty values
+        const requiredFields = { question, category, user };
+        for (const field in requiredFields)
         {
-            return res.status(400).json({ message: 'Please provide a non-empty question' });
+            if (!requiredFields[field] || requiredFields[field].trim() === '')
+            {
+                return res.status(400).json({ message: `Please provide a non-empty ${field}` });
+            }
         }
-        if (!category || category.trim() === '')
-        {
-            return res.status(400).json({ message: 'Please provide a non-empty category' });
-        }
-        if (!user || user.trim() === '')
-        {
-            return res.status(400).json({ message: 'Please provide a non-empty user' });
-        }
+
+        // Check for missing options or options with missing text or isCorrect properties
         if (!options || options.length === 0)
         {
             return res.status(400).json({ message: 'Please provide at least one option' });
         }
 
         let hasCorrectOption = false;
-        // Check if any of the options are missing text or isCorrect properties
         for (const option of options)
         {
             if (!option.text || option.text.trim() === '')
@@ -56,6 +53,7 @@ const createQuestion = async (req, res) => {
 };
 
 
+
 const getAllQuestions = async (req, res) => {
     try
     {
@@ -67,6 +65,7 @@ const getAllQuestions = async (req, res) => {
         res.status(500).json({ message: 'Error fetching questions', error: error.message });
     }
 };
+
 const getCategories = async (req, res) => {
     try
     {
