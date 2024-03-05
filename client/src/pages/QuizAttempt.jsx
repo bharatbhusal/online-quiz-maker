@@ -19,6 +19,16 @@ const QuizAttempt = () => {
     useEffect(() => {
         startQuiz();
     }, []);
+    
+    // declare the function 
+    const shuffle = (array) => {
+        for (let i = array.length - 1; i > 0; i--)
+        {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    };
 
     const startQuiz = async () => {
         try
@@ -31,8 +41,11 @@ const QuizAttempt = () => {
                 }
             });
             const data = await response.json();
-            console.log(data)
-            setQuestions(data);
+            setQuestions(() => {
+                if (data.length >= 5) return (shuffle(data).slice(0, 5));
+                else return shuffle(data)
+            }
+            );
         } catch (error)
         {
             console.error('Error fetching questions:', error);

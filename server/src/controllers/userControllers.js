@@ -41,7 +41,10 @@ const loginUser = async (req, res) => {
             user: email
         }
         const accessToken = jwt.sign(payload, env.ACCESS_TOKEN_SECRECT)
-        res.status(200).json({ accessToken: accessToken })
+        res.status(200).json({
+            accessToken: accessToken,
+            user: email
+        })
     } catch (error)
     {
         res.status(500).json({ message: 'Error logging in user', error: error.message });

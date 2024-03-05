@@ -12,7 +12,7 @@ function Login() {
     const [password, setPassword] = useState('bhafds323fdrat');
     const [errorMessages, setErrorMessages] = useState([]); // State variable for error messages
     const [successMessages, setSuccessMessages] = useState([]); // State variable for success messages
-    const { token, setToken } = useUserContext()
+    const { user, setToken, setUser } = useUserContext()
     const navigator = useNavigate()
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -37,7 +37,7 @@ function Login() {
         // Cleanup function to clear the interval
         return () => clearInterval(interval);
     }, [successMessages]); // Re-run effect whenever errorMessages change
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try
@@ -59,6 +59,7 @@ function Login() {
 
             const data = await response.json();
             setToken(data.accessToken);
+            setUser(data.user)
             setSuccessMessages([...successMessages, 'Login successful']); // Add success message to array
             navigator('/category')
 

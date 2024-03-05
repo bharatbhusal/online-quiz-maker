@@ -13,11 +13,10 @@ function CreateQuestion() {
     const [correctOptionIndex, setCorrectOptionIndex] = useState(null);
     const [creator, setCreator] = useState('bharat');
 
-
     const [errorMessages, setErrorMessages] = useState([]); // State variable for error messages
     const [successMessages, setSuccessMessages] = useState([]); // State variable for success messages
 
-    const { token } = useUserContext();
+    const { token, user } = useUserContext();
 
     const handleQuestionChange = (e) => setQuestion(e.target.value);
     const handleCategoryChange = (e) => setCategory(e.target.value);
@@ -38,7 +37,7 @@ function CreateQuestion() {
         const interval = setInterval(() => {
 
             setErrorMessages(errorMessages.slice(1));
-        }, 500);
+        }, 1500);
 
         // Cleanup function to clear the interval
         return () => clearInterval(interval);
@@ -48,7 +47,7 @@ function CreateQuestion() {
         // Remove the oldest error message from the array every 2 seconds
         const interval = setInterval(() => {
             setSuccessMessages(successMessages.slice(1));
-        }, 500);
+        }, 1500);
 
         // Cleanup function to clear the interval
         return () => clearInterval(interval);
@@ -62,14 +61,14 @@ function CreateQuestion() {
             const payload = {
                 question,
                 category,
-                creator,
+                user,
                 options: options.map((option, index) => ({
                     text: option,
                     isCorrect: index === correctOptionIndex
                 }))
             };
-            console.log(payload)
-            console.log(token)
+            // console.log(payload)
+            // console.log(token)
             const response = await fetch('http://localhost:8081/questions', {
                 method: 'POST',
                 headers: {
@@ -78,10 +77,21 @@ function CreateQuestion() {
                 },
                 body: JSON.stringify(payload)
             });
+
+            if (!response.ok)
+            {
+                const data = await response.json();
+                setErrorMessages([...errorMessages, data.message]); // Add error message to array
+                return;
+            }
             setSuccessMessages([...successMessages, 'Question added']); // Add success message to array
+            setQuestion("")
+            setCategory("")
+            setCreator("")
+            setOptions([])
         } catch (error)
         {
-            setErrorMessages([...errorMessages, data.message]); // Add error message to array
+            setErrorMessages([...errorMessages, error.message]); // Add error message to array
             console.error('Error creating question:', error);
         }
     };
@@ -92,7 +102,7 @@ function CreateQuestion() {
             <form >
                 <input type="text" placeholder="Question" value={question} onChange={handleQuestionChange} required />
                 <input type="text" placeholder="Category" value={category} onChange={handleCategoryChange} required />
-                <input type="text" placeholder="Creator" value={creator} onChange={(e) => setCreator(e.target.value)} required />
+                {/* <input type="text" placeholder="Creator" value={creator} onChange={(e) => setCreator(e.target.value)} required /> */}
                 {options.map((option, index) => (
                     <div key={index} className='options'>
                         <input type="text" placeholder={`Option ${index + 1}`} value={option} onChange={(e) => handleOptionChange(index, e)} required />

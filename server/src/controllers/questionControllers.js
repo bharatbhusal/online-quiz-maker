@@ -2,15 +2,59 @@ const QuestionModel = require('../models/QuestionModel');
 const createQuestion = async (req, res) => {
     try
     {
-        const { question, category, creator, options } = req.body;
+        const { question, category, user, options } = req.body;
+
+        // Check if any of the required fields are null or empty
+        if (!question || question.trim() === '')
+        {
+            return res.status(400).json({ message: 'Please provide a non-empty question' });
+        }
+        if (!category || category.trim() === '')
+        {
+            return res.status(400).json({ message: 'Please provide a non-empty category' });
+        }
+        if (!user || user.trim() === '')
+        {
+            return res.status(400).json({ message: 'Please provide a non-empty user' });
+        }
+        if (!options || options.length === 0)
+        {
+            return res.status(400).json({ message: 'Please provide at least one option' });
+        }
+
+        let hasCorrectOption = false;
+        // Check if any of the options are missing text or isCorrect properties
+        for (const option of options)
+        {
+            if (!option.text || option.text.trim() === '')
+            {
+                return res.status(400).json({ message: 'Each option must have a non-empty text' });
+            }
+            if (option.isCorrect === undefined)
+            {
+                return res.status(400).json({ message: 'Each option must have an isCorrect property' });
+            }
+            if (option.isCorrect)
+            {
+                hasCorrectOption = true;
+            }
+        }
+
+        // Check if at least one option is marked as correct
+        if (!hasCorrectOption)
+        {
+            return res.status(400).json({ message: 'At least one option must be marked as correct' });
+        }
+
         // Create the new question
-        const newQuestion = await QuestionModel.create({ question, category, creator, options });
+        const newQuestion = await QuestionModel.create({ question, category, creator: user, options });
         res.status(201).json(newQuestion);
     } catch (error)
     {
         res.status(500).json({ message: 'Error creating question', error: error.message });
     }
 };
+
 
 const getAllQuestions = async (req, res) => {
     try
