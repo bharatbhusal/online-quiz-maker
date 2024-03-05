@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "../styles/quizAttempt.css"
 const Question = ({ question, options, selectedOption, onOptionChange }) => {
+
     return (
         <>
             <p>{question}</p>

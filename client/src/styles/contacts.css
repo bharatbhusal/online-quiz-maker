@@ -1,0 +1,22 @@
+/* =============== contacts Styles Start =============== */
+.contacts {
+	height: 100vh;
+}
+
+.contacts .content {
+	text-align: center;
+}
+
+.contacts h2 {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	color: var(--color-primary);
+}
+
+.contacts .message {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	color: var(--color-white);
+}
+
+/* =============== contacts Styles End =============== */

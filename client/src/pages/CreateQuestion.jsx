@@ -5,6 +5,7 @@ import '../styles/createQuestion.css'; // Import CSS for styling
 import Footer from '../components/Footer';
 import ErrorBox from '../components/ErrorBox';
 import SuccessBox from '../components/SuccessBox';
+import Unauthorized from './Unauthorized';
 
 function CreateQuestion() {
     const [question, setQuestion] = useState('who are you');
@@ -97,27 +98,31 @@ function CreateQuestion() {
     };
 
     return (
-        <div className="create-question-container">
-            <h2>Create Question</h2>
-            <form >
-                <input type="text" placeholder="Question" value={question} onChange={handleQuestionChange} required />
-                <input type="text" placeholder="Category" value={category} onChange={handleCategoryChange} required />
-                {/* <input type="text" placeholder="Creator" value={creator} onChange={(e) => setCreator(e.target.value)} required /> */}
-                {options.map((option, index) => (
-                    <div key={index} className='options'>
-                        <input type="text" placeholder={`Option ${index + 1}`} value={option} onChange={(e) => handleOptionChange(index, e)} required />
-                        <input type="radio" checked={correctOptionIndex === index} onChange={() => handleCorrectOptionChange(index)} required />
-                    </div>
-                ))}
-                <button type="button" onClick={addOption}>Add Option</button>
-                <button type="button" onClick={handleSubmit}>Create Question</button>
+        <>
+            {token ?
+                <div className="create-question-container">
+                    <h2>Create Question</h2>
+                    <form >
+                        <input type="text" placeholder="Question" value={question} onChange={handleQuestionChange} required />
+                        <input type="text" placeholder="Category" value={category} onChange={handleCategoryChange} required />
+                        {/* <input type="text" placeholder="Creator" value={creator} onChange={(e) => setCreator(e.target.value)} required /> */}
+                        {options.map((option, index) => (
+                            <div key={index} className='options'>
+                                <input type="text" placeholder={`Option ${index + 1}`} value={option} onChange={(e) => handleOptionChange(index, e)} required />
+                                <input type="radio" checked={correctOptionIndex === index} onChange={() => handleCorrectOptionChange(index)} required />
+                            </div>
+                        ))}
+                        <button type="button" onClick={addOption}>Add Option</button>
+                        <button type="button" onClick={handleSubmit}>Create Question</button>
 
-                {/* Render ErrorBar for each error message in the array */}
-                <ErrorBox errors={errorMessages} />
-                {/* Render SuccessBar for each success message in the array */}
-                <SuccessBox successes={successMessages} />
-            </form>
-        </div>
+                        {/* Render ErrorBar for each error message in the array */}
+                        <ErrorBox errors={errorMessages} />
+                        {/* Render SuccessBar for each success message in the array */}
+                        <SuccessBox successes={successMessages} />
+                    </form>
+                </div> :
+                <Unauthorized />}
+        </>
     );
 }
 

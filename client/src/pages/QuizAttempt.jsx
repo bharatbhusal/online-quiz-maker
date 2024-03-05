@@ -5,6 +5,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useUserContext } from '../context/useUserContext';
 import { useQuestions } from '../context/useQuestionContext';
 import Footer from '../components/Footer';
+import UnauthorizedPage from "./Unauthorized"
 
 const QuizAttempt = () => {
     const proxy = process.env.REACT_APP_DATABASE_URL;
@@ -19,7 +20,7 @@ const QuizAttempt = () => {
     useEffect(() => {
         startQuiz();
     }, []);
-    
+
     // declare the function 
     const shuffle = (array) => {
         for (let i = array.length - 1; i > 0; i--)
@@ -90,24 +91,29 @@ const QuizAttempt = () => {
     }
 
     return (
-        <div className="quiz-container">
-            <h2 className="quiz-title">Quiz: {category}</h2>
-            <p className="question-number">Question {currentQuestionIndex + 1} / {questions.length}</p>
-            <div className="question-text">
-                <Question
-                    question={questions[currentQuestionIndex]?.question}
-                    options={questions[currentQuestionIndex]?.options}
-                    selectedOption={selectedOption}
-                    onOptionChange={handleOptionChange}
-                />
-            </div>
-            {currentQuestionIndex + 1 !== questions.length
-                ?
-                <button className="submit-button" onClick={handleNextAnswer}>Next</button>
+        <>
+            {token ?
+                <div className="quiz-container">
+                    <h2 className="quiz-title">Quiz: {category}</h2>
+                    <p className="question-number">Question {currentQuestionIndex + 1} / {questions.length}</p>
+                    <div className="question-text">
+                        <Question
+                            question={questions[currentQuestionIndex]?.question}
+                            options={questions[currentQuestionIndex]?.options}
+                            selectedOption={selectedOption}
+                            onOptionChange={handleOptionChange}
+                        />
+                    </div>
+                    {currentQuestionIndex + 1 !== questions.length
+                        ?
+                        <button className="submit-button" onClick={handleNextAnswer}>Next</button>
+                        :
+                        <button className="submit-button" onClick={setQuizCompleted}>Finish</button>
+                    }
+                </div>
                 :
-                <button className="submit-button" onClick={setQuizCompleted}>Finish</button>
-            }
-        </div>
+                <UnauthorizedPage />}
+        </>
     );
 };
 

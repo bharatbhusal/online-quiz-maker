@@ -4,6 +4,7 @@ import { useUserContext } from '../context/useUserContext';
 import { NavLink } from 'react-router-dom';
 import { useQuestions } from '../context/useQuestionContext';
 import Footer from '../components/Footer';
+import Unauthorized from './Unauthorized';
 
 const CategorySelection = () => {
     const proxy = process.env.REACT_APP_DATABASE_URL;
@@ -34,16 +35,20 @@ const CategorySelection = () => {
     };
 
     return (
-        <div className="category-selection flex flex-column">
-            <h2>Select a Category</h2>
-            <div className='category-buttons'>
-                {categories && categories.map((category, index) => (
-                    <NavLink key={index} to={`/quiz`}>
-                        <button onClick={() => setCategory(category)}>{category}</button>
-                    </NavLink>
-                ))}
+        <>
+            {token ? <div className="category-selection flex flex-column">
+                <h2>Select a Category</h2>
+                <div className='category-buttons'>
+                    {categories && categories.map((category, index) => (
+                        <NavLink key={index} to={`/quiz`}>
+                            <button onClick={() => setCategory(category)}>{category}</button>
+                        </NavLink>
+                    ))}
+                </div>
             </div>
-        </div>
+                :
+                <Unauthorized />}
+        </>
     );
 };
 

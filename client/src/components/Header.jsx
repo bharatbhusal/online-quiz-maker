@@ -16,8 +16,8 @@ const Header = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/create-questions">Create Questions</Link></li>
                         <li><Link to="/category">Quiz</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
+                        <li><Link to="/about-us">About</Link></li>
+                        <li><Link to="/contacts">Contact</Link></li>
                         {!token && <li><Link to="/login"><button>LogIn</button></Link></li>}
                     </ul>
                 </nav>

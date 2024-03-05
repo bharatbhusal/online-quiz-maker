@@ -4,6 +4,8 @@ import SuccessBox from '../components/SuccessBox'; // Import the SuccessBar comp
 import "../styles/register.css";
 import Footer from '../components/Footer';
 import { NavLink } from 'react-router-dom';
+import Unauthorized from './Unauthorized';
+import { useUserContext } from '../context/useUserContext';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -11,7 +13,7 @@ function Register() {
     const [password, setPassword] = useState('');
     const [errorMessages, setErrorMessages] = useState([]); // State variable for error messages
     const [successMessages, setSuccessMessages] = useState([]); // State variable for success messages
-
+    const { token } = useUserContext()
     const handleUsernameChange = (e) => setUsername(e.target.value);
     const handleEmailChange = (e) => setEmail(e.target.value);
     const handlePasswordChange = (e) => setPassword(e.target.value);
@@ -80,6 +82,7 @@ function Register() {
             </form>
             <NavLink to={'/login'}>Login</NavLink>
         </div>
+
     );
 }
 

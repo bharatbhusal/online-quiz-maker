@@ -1,0 +1,28 @@
+/* =============== about-us Styles Start =============== */
+.about-us {
+	height: 100vh;
+}
+
+.about-us .content {
+	text-align: center;
+}
+
+.about-us h2 {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	color: var(--color-primary);
+}
+
+.about-us .message {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	color: var(--color-white);
+}
+
+.about-us .link {
+	font-size: 1rem;
+	color: #00d9ff;
+	text-decoration: none;
+	font-weight: bold;
+}
+/* =============== about-us Styles End =============== */

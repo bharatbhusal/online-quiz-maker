@@ -1,0 +1,28 @@
+/* =============== Unauthorized Styles Start =============== */
+.unauthorized {
+	height: 100vh;
+}
+
+.unauthorized .content {
+	text-align: center;
+}
+
+.heading {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	color: var(--color-primary);
+}
+
+.unauthorized .message {
+	font-size: 1.2rem;
+	margin-bottom: 2rem;
+	color: var(--color-white);
+}
+
+.unauthorized .link {
+	font-size: 1rem;
+	color: #00d9ff;
+	text-decoration: none;
+	font-weight: bold;
+}
+/* =============== Unauthorized Styles End =============== */

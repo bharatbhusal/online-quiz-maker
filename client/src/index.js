@@ -16,6 +16,8 @@ import CreateQuestion from "./pages/CreateQuestion";
 import QuizAttempt from "./pages/QuizAttempt";
 import CategorySelection from "./pages/CategorySelection";
 import { QuestionProvider } from "./context/QuestionsContext";
+import AboutUsPage from "./pages/AboutUs";
+import Contacts from "./pages/Contacts";
 
 // Getting the DOM element with the id "root"
 const divContainer = document.getElementById("root")
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
                     {
                         path: '/quiz',
                         element: <QuizAttempt />
+                    },
+                    {
+                        path: '/about-us',
+                        element: <AboutUsPage />
+                    },
+                    {
+                        path: '/contacts',
+                        element: <Contacts />
                     }
 
                 ]
