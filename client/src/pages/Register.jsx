@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ErrorBox from '../components/ErrorBox'; // Import the ErrorBar component
 import SuccessBox from '../components/SuccessBox'; // Import the SuccessBar component
 import "../styles/register.css";
+import Footer from '../components/Footer';
+import { NavLink } from 'react-router-dom';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -76,6 +78,7 @@ function Register() {
                 <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} required />
                 <button type="submit">Register</button>
             </form>
+            <NavLink to={'/login'}>Login</NavLink>
         </div>
     );
 }

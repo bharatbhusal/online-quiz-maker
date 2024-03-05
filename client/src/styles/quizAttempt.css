@@ -4,7 +4,7 @@
 	max-width: 600px; /* Limit the width of the container */
 	margin: 0 auto; /* Center the container horizontally */
 	padding: 20px;
-	background-color: #f9f9f9; /* Background color */
+	background-color: var(--color-card); /* Background color */
 	border-radius: 10px; /* Rounded corners */
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
 	color: black;
@@ -37,8 +37,8 @@
 .submit-button {
 	padding: 10px 20px; /* Padding for submit button */
 	font-size: 16px; /* Font size for submit button */
-	background-color: #007bff; /* Button background color */
-	color: #fff; /* Button text color */
+	background-color: var(--color-primary); /* Button background color */
+	color: var(--color-white); /* Button text color */
 	border: none; /* Remove button border */
 	border-radius: 5px; /* Button border radius */
 	cursor: pointer; /* Cursor style */
@@ -46,5 +46,17 @@
 }
 
 .submit-button:hover {
-	background-color: #0056b3; /* Button background color on hover */
+	background-color: var(
+		--color-primary-hover
+	); /* Button background color on hover */
+}
+
+input[type="radio"] {
+	margin-right: 0.5rem;
+	margin-bottom: 0;
+}
+
+.choices {
+	display: flex;
+	align-items: center;
 }

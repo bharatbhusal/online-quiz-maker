@@ -10,11 +10,13 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2px;
+	overflow-y: scroll;
+	visibility: hidden;
 }
 
 .success-bar {
 	background-color: #80ff86; /* Light red background */
-	color: #fff; /* White text */
+	color: #000; /* White text */
 	padding: 10px;
 	width: 100%;
 	border-radius: 5px;

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Question from '../components/Question';
 import "../styles/quizAttempt.css"
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useUserContext } from '../context/useUserContext';
 import { useQuestions } from '../context/useQuestionContext';
+import Footer from '../components/Footer';
 
 const QuizAttempt = () => {
     const proxy = process.env.REACT_APP_DATABASE_URL;
@@ -47,7 +48,7 @@ const QuizAttempt = () => {
         setSelectedOption('');
     };
 
-    const handleSubmitAnswer = () => {
+    const handleNextAnswer = () => {
         const currentQuestion = questions[currentQuestionIndex];
         const correctAnswer = currentQuestion.options.find(option => option.isCorrect)?.text;
 
@@ -59,9 +60,6 @@ const QuizAttempt = () => {
         if (currentQuestionIndex < questions.length - 1)
         {
             handleNextQuestion();
-        } else
-        {
-            setQuizCompleted(true);
         }
     };
 
@@ -71,6 +69,9 @@ const QuizAttempt = () => {
             <div>
                 <h2>Quiz Completed!</h2>
                 <p>Your score: {score} / {questions.length}</p>
+                <NavLink to={"/category"} >
+                    <button>Home</button>
+                </NavLink>
             </div>
         );
     }
@@ -87,7 +88,12 @@ const QuizAttempt = () => {
                     onOptionChange={handleOptionChange}
                 />
             </div>
-            <button className="submit-button" onClick={handleSubmitAnswer}>Submit Answer</button>
+            {currentQuestionIndex + 1 !== questions.length
+                ?
+                <button className="submit-button" onClick={handleNextAnswer}>Next</button>
+                :
+                <button className="submit-button" onClick={setQuizCompleted}>Finish</button>
+            }
         </div>
     );
 };

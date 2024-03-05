@@ -4,6 +4,7 @@ import SuccessBox from '../components/SuccessBox'; // Import the SuccessBar comp
 import "../styles/login.css";
 import { useUserContext } from '../context/useUserContext';
 import { NavLink, Navigate, redirect, useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 
 function Login() {
@@ -19,6 +20,7 @@ function Login() {
     useEffect(() => {
         // Remove the oldest error message from the array every 2 seconds
         const interval = setInterval(() => {
+
             setErrorMessages(errorMessages.slice(1));
         }, 500);
 
@@ -35,7 +37,7 @@ function Login() {
         // Cleanup function to clear the interval
         return () => clearInterval(interval);
     }, [successMessages]); // Re-run effect whenever errorMessages change
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try
@@ -79,6 +81,7 @@ function Login() {
                 <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} required />
                 <button type="submit">Login</button>
             </form>
+            <NavLink to={'/registration'}>New here</NavLink>
         </div>
     );
 }

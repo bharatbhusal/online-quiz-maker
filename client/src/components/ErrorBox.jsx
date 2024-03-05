@@ -5,7 +5,7 @@ import '../styles/errorBox.css';
 
 const ErrorBox = ({ errors }) => {
     return (
-        <div className="error-box">
+        <div className="error-box ">
             {errors.map((each, index) => (
                 <div className="error-bar" key={index} >{each}</div>
             ))}

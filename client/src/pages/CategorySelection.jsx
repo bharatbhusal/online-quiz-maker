@@ -3,6 +3,7 @@ import "../styles/categorySelection.css";
 import { useUserContext } from '../context/useUserContext';
 import { NavLink } from 'react-router-dom';
 import { useQuestions } from '../context/useQuestionContext';
+import Footer from '../components/Footer';
 
 const CategorySelection = () => {
     const proxy = process.env.REACT_APP_DATABASE_URL;

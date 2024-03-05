@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-
+import "../styles/quizAttempt.css"
 const Question = ({ question, options, selectedOption, onOptionChange }) => {
     return (
         <>
             <p>{question}</p>
-            <div>
-                {options?.map((option, index) => (
-                    <div key={index}>
+            {options?.map((option, index) => (
+                <div key={index}>
+                    <div className="choices">
+
                         <input
                             type="radio"
                             id={`option${index}`}
@@ -17,8 +18,8 @@ const Question = ({ question, options, selectedOption, onOptionChange }) => {
                         />
                         <label htmlFor={`option${index}`}>{option.text}</label>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </>
     );
 }

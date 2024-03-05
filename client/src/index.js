@@ -36,7 +36,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <Login />,
+                        element: <>This is home page</>,
                     },
                     {
                         path: '/login',
